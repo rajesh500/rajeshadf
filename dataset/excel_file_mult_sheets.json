@@ -1,0 +1,31 @@
+{
+	"name": "excel_file_mult_sheets",
+	"properties": {
+		"description": "this excel file contains multiple sheets of the data.",
+		"linkedServiceName": {
+			"referenceName": "adlsstorageaccount",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"esheetnames": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": {
+				"value": "@dataset().esheetnames",
+				"type": "Expression"
+			},
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "excel_data_files.xlsx",
+				"fileSystem": "sourcedatafiles"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

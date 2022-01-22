@@ -1,0 +1,121 @@
+{
+	"name": "mul_excl_sql_tbl",
+	"properties": {
+		"description": "pipeline to load multiple excel files into azure sql database tables",
+		"activities": [
+			{
+				"name": "fetchsheetsname",
+				"description": "list all sheets and create a table in db and insert all the sheet names in the table.",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select name from excel_sheetsname",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_table_name",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "iterate a loop",
+				"description": "iterate a loop to fetch names from look-up",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "fetchsheetsname",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('fetchsheetsname').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "copydatafromexel",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ExcelSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "excel_file_mult_sheets",
+									"type": "DatasetReference",
+									"parameters": {
+										"esheetnames": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "tgt_dataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"dsTableName": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-01-22T04:39:53Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

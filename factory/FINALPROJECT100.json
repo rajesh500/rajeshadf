@@ -1,0 +1,9 @@
+{
+	"name": "FINALPROJECT100",
+	"location": "westus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "49f01e65-2745-4f79-a837-1db4b71a2751",
+		"tenantId": "f0d7ab0e-84ce-4f77-baf3-76fb07f81f4b"
+	}
+}
