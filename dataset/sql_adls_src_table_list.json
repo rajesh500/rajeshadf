@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlTable1",
+	"name": "sql_adls_src_table_list",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabaselinkedservice",

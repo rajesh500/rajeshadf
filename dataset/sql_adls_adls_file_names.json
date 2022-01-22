@@ -1,0 +1,31 @@
+{
+	"name": "sql_adls_adls_file_names",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsstorageaccount",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"adls_file_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().adls_file_name",
+					"type": "Expression"
+				},
+				"fileSystem": "targetdatafiles"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
