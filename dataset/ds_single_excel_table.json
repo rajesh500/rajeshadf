@@ -1,0 +1,24 @@
+{
+	"name": "ds_single_excel_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaselinkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"dsTableName": {
+				"type": "string",
+				"defaultValue": "singleexcelfiledata"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().dsTableName",
+				"type": "Expression"
+			}
+		}
+	}
+}

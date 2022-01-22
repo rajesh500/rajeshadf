@@ -48,7 +48,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "tgt_dataset",
+						"referenceName": "ds_single_excel_table",
 						"type": "DatasetReference"
 					}
 				]
