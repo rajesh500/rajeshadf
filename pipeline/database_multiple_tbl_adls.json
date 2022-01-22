@@ -103,7 +103,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"adls_file_name": {
-											"value": "@item().name",
+											"value": "@concat(item().name, '.csv')",
 											"type": "Expression"
 										}
 									}
