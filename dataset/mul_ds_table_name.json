@@ -14,10 +14,7 @@
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": {
-				"value": "@dataset().mul_tgt_table_name",
-				"type": "Expression"
-			},
+			"schema": "",
 			"table": {
 				"value": "@dataset().mul_tgt_table_name",
 				"type": "Expression"
