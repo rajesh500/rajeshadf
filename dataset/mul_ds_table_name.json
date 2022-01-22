@@ -1,0 +1,31 @@
+{
+	"name": "mul_ds_table_name",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaselinkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"mul_tgt_table_name": {
+				"type": "string"
+			},
+			"mul_schema_name": {
+				"type": "string",
+				"defaultValue": "dbo."
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().mul_tgt_table_name",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().mul_tgt_table_name",
+				"type": "Expression"
+			}
+		}
+	}
+}

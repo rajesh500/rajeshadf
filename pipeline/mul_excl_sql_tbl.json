@@ -99,10 +99,10 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "tgt_dataset",
+									"referenceName": "mul_ds_table_name",
 									"type": "DatasetReference",
 									"parameters": {
-										"dsTableName": {
+										"mul_tgt_table_name": {
 											"value": "@item().name",
 											"type": "Expression"
 										}
