@@ -1,0 +1,20 @@
+{
+	"name": "singledataexcelfile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsstorageaccount",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "single_data_file.xlsx",
+				"fileSystem": "sourcedatafiles"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
