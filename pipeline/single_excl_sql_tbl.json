@@ -1,0 +1,9 @@
+{
+	"name": "single_excl_sql_tbl",
+	"properties": {
+		"description": "pipeline to load multiple excel files into azure sql database tables",
+		"annotations": [],
+		"lastPublishTime": "2022-01-22T04:39:53Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
