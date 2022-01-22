@@ -8,10 +8,6 @@
 		"parameters": {
 			"mul_tgt_table_name": {
 				"type": "string"
-			},
-			"mul_schema_name": {
-				"type": "string",
-				"defaultValue": "dbo."
 			}
 		},
 		"annotations": [],
